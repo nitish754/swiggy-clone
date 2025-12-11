@@ -1,4 +1,4 @@
-import express, { type Application, type Request, type Response } from 'express'
+import express, {Application, Response} from "express";
 
 const app:Application = express();
 
