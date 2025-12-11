@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "description": "This is backend APIs for NamsateReact",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "start": "nodemon index.js",
+    "dev": "nodemon --watch src --exec ts-node src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
     "test": "jest"
   },
   "keywords": [
