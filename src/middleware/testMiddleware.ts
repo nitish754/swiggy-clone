@@ -1,7 +1,10 @@
-import { NextFunction, Request, Response } from "express";
+import { NextFunction, Request, Response } from 'express';
 
-export const testMiddleware = (req:Request,res:Response,next:NextFunction) => {
-    console.log("Test Middleware executed");
-    next();
-}
-
+export const testMiddleware = (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): void => {
+  console.log('Test Middleware executed');
+  next();
+};
