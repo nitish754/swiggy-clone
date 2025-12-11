@@ -17,7 +17,8 @@
   "author": "Nitish Jha",
   "license": "ISC",
   "dependencies": {
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "module-alias": "^2.2.3"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",
@@ -33,5 +34,8 @@
     "ts-node-dev": "^2.0.0",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.9.3"
-  }
+  },
+  "_moduleAliases": {
+  "@": "dist"
+}
 }
