@@ -1,0 +1,22 @@
+{
+  "name": "namastereactbackend",
+  "version": "1.0.0",
+  "description": "This is backend APIs for NamsateReact",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "jest"
+  },
+  "keywords": [
+    "NodeJs",
+    "TypeScript"
+  ],
+  "author": "Nitish Jha",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}
