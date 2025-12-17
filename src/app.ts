@@ -1,11 +1,12 @@
+import 'dotenv/config';
 import express, { Application, Request, Response } from 'express';
-import router from './routes/index';
+// import router from './routes/index';
 
 const app: Application = express();
 
 app.use(express.json());
 
-app.use('/api', router);
+// app.use('/api', router);
 
 app.use((req: Request, res: Response) => {
   res.status(200).json({

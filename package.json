@@ -27,12 +27,18 @@
   "author": "Nitish Jha",
   "license": "ISC",
   "dependencies": {
+    "@prisma/adapter-pg": "^7.1.0",
+    "@prisma/client": "^7.1.0",
+    "dotenv": "^17.2.3",
     "express": "^5.2.1",
-    "module-alias": "^2.2.3"
+    "module-alias": "^2.2.3",
+    "pg": "^8.16.3",
+    "prisma": "^7.1.0"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",
-    "@types/node": "^25.0.0",
+    "@types/node": "^25.0.2",
+    "@types/pg": "^8.16.0",
     "@typescript-eslint/eslint-plugin": "^8.49.0",
     "@typescript-eslint/parser": "^8.49.0",
     "eslint": "^9.39.1",
