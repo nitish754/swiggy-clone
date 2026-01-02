@@ -6,7 +6,7 @@ const globals = require('globals');
 module.exports = [
   // ⛔ Important: separate ignore block
   {
-    ignores: ['node_modules/**', 'dist/**'],
+    ignores: ['node_modules/**', 'dist/**', 'prisma.config.ts'],
   },
 
   {

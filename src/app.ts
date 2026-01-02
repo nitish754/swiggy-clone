@@ -14,10 +14,4 @@ app.use((req: Request, res: Response) => {
   });
 });
 
-function testType(message: unknown) {
-  return message;
-}
-
-testType('This is a test message');
-
 export default app;
