@@ -1,12 +1,19 @@
-import { User } from '@prisma/client';
-import { prisma } from '@/lib/prisma';
+import { User } from '@/generated/client';
+import { prisma } from '@/shared/utils/prisma';
+import { SingupRequestDTO } from './authType';
 
 export class AuthRepository {
   private userModel = prisma.user;
 
   async findByEmail(email: string): Promise<User | null> {
-    return this.userModel.findUnique({
+    return await this.userModel.findUnique({
       where: { email },
+    });
+  }
+
+  async createUser(payload: SingupRequestDTO): Promise<User> {
+    return await this.userModel.create({
+      data: payload,
     });
   }
 }

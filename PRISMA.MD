@@ -89,4 +89,12 @@ npx prisma migrate dev --name MySchema init
 
 After making any changes to your schema, you need to run this command again to reflect the changes in your database.
 
+```bash
+npx prisma generate
+```
+
+```bash
+npx prisma migrate dev --name MySchema init
+```
+
 Your Prisma configuration is now complete. You can use the `PrismaClient` instance throughout your application to interact with your database models.

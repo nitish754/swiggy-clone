@@ -5,5 +5,3 @@ export const LoginSchema = z.object({
   password: z.string().min(8),
   isRemember: z.boolean().default(true),
 });
-
-export type LoginRequestDTO = z.infer<typeof LoginSchema>;

@@ -1,17 +1,14 @@
 import 'dotenv/config';
-import express, { Application, Request, Response } from 'express';
-// import router from './routes/index';
+import express, { Application } from 'express';
+import router from './routes/index';
+import { handleError } from './shared/middleware/handleError';
 
 const app: Application = express();
 
 app.use(express.json());
 
-// app.use('/api', router);
+app.use('/api', router);
 
-app.use((req: Request, res: Response) => {
-  res.status(200).json({
-    message: 'Application is running OK!',
-  });
-});
+app.use(handleError);
 
 export default app;

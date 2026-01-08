@@ -3,9 +3,10 @@ import { ZodType } from 'zod';
 
 export const validateRequest =
   (schema: ZodType) =>
-  (req: Request, res: Response, next: NextFunction): void => {
+  (req: Request, _res: Response, next: NextFunction): void => {
     try {
       req.body = schema.parse(req.body);
+      next();
     } catch (error) {
       next(error);
     }
