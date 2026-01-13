@@ -7,3 +7,5 @@ const authService = new AuthService(AuthRepo);
 const authController = new AuthController(authService);
 
 export const SingupHandler = authController.signup;
+
+export const LoginHandler = authController.login;

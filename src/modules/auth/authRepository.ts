@@ -1,6 +1,6 @@
 import { User } from '@/generated/client';
 import { prisma } from '@/shared/utils/prisma';
-import { SingupRequestDTO } from './authType';
+import { SignupRequestDTO } from './authType';
 
 export class AuthRepository {
   private userModel = prisma.user;
@@ -11,7 +11,7 @@ export class AuthRepository {
     });
   }
 
-  async createUser(payload: SingupRequestDTO): Promise<User> {
+  async createUser(payload: SignupRequestDTO): Promise<User> {
     return await this.userModel.create({
       data: payload,
     });
