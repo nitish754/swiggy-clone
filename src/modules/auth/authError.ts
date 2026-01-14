@@ -12,3 +12,9 @@ export class DuplicateEmail extends BaseError {
     super(message, 400, ErrorCode.BAD_REQUEST);
   }
 }
+
+export class InvalidToken extends BaseError {
+  constructor(message = 'Invalid or expired token') {
+    super(message, 401, ErrorCode.UNAUTHORIZED);
+  }
+}

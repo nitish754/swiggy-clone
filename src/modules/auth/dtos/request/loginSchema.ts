@@ -1,3 +1,4 @@
+import { DEVICE } from '@/generated/enums';
 import { z } from 'zod';
 
 export const LoginSchema = z.object({
@@ -6,4 +7,5 @@ export const LoginSchema = z.object({
     .string('Password is required')
     .min(8, 'Password must be at least 8 characters long'),
   isRemember: z.boolean().default(true),
+  device: z.enum(DEVICE),
 });

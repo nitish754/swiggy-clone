@@ -31,3 +31,11 @@ export const TYPE = {
 } as const;
 
 export type TYPE = (typeof TYPE)[keyof typeof TYPE];
+
+export const DEVICE = {
+  WEB: 'WEB',
+  ANDROID: 'ANDROID',
+  IOS: 'IOS',
+} as const;
+
+export type DEVICE = (typeof DEVICE)[keyof typeof DEVICE];

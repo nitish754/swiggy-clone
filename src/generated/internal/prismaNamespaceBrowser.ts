@@ -57,6 +57,7 @@ export const ModelName = {
   User: 'User',
   Restaurant: 'Restaurant',
   RestaurantPhone: 'RestaurantPhone',
+  RefreshToken: 'RefreshToken',
 } as const;
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];
@@ -118,6 +119,20 @@ export const RestaurantPhoneScalarFieldEnum = {
 
 export type RestaurantPhoneScalarFieldEnum =
   (typeof RestaurantPhoneScalarFieldEnum)[keyof typeof RestaurantPhoneScalarFieldEnum];
+
+export const RefreshTokenScalarFieldEnum = {
+  id: 'id',
+  token: 'token',
+  userId: 'userId',
+  device: 'device',
+  expiresAt: 'expiresAt',
+  isRevoked: 'isRevoked',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type RefreshTokenScalarFieldEnum =
+  (typeof RefreshTokenScalarFieldEnum)[keyof typeof RefreshTokenScalarFieldEnum];
 
 export const SortOrder = {
   asc: 'asc',

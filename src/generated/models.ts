@@ -10,4 +10,5 @@
 export type * from './models/User';
 export type * from './models/Restaurant';
 export type * from './models/RestaurantPhone';
+export type * from './models/RefreshToken';
 export type * from './commonInputTypes';

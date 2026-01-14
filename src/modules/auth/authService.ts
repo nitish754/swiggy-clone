@@ -1,10 +1,20 @@
-import { NotFoundError } from '@/shared/errors/HttpError';
-import { DuplicateEmail, InvalidCredentialError } from './authError';
+import {
+  DuplicateEmail,
+  InvalidCredentialError,
+  InvalidToken,
+} from './authError';
 import { AuthRepository } from './authRepository';
-import { LoginRequestDTO, LoginResponse, SignupRequestDTO } from './authType';
+import {
+  LoginRequestDTO,
+  LoginResponse,
+  RefreshTokenRequestDTO,
+  RefreshTokenResponse,
+  SignupRequestDTO,
+} from './authType';
 import { SignupResponse } from './authType';
 import * as bcrypt from 'bcrypt';
 import { generateAuthToken, generateRefreshToken } from '@/shared/utils/jwt';
+import moment from 'moment';
 
 export class AuthService {
   constructor(private readonly authRepository: AuthRepository) {}
@@ -36,7 +46,7 @@ export class AuthService {
   async login(payload: LoginRequestDTO): Promise<LoginResponse> {
     const user = await this.authRepository.findByEmail(payload.email);
     if (!user) {
-      throw new NotFoundError('User not found');
+      throw new InvalidCredentialError('Invalid email or password');
     }
     const isPasswordMatched = await bcrypt.compare(
       payload.password,
@@ -51,7 +61,15 @@ export class AuthService {
       name: `${user.firstName} ${user.lastName}`,
       role: user.role,
     });
-    const refreshToken = generateRefreshToken(user.id);
+    const refreshToken = generateRefreshToken();
+
+    // save token in DB
+    await this.authRepository.saveRefreshToken({
+      device: 'WEB',
+      userId: user.id,
+      expiresAt: moment().add(1, 'd').toDate(),
+      token: refreshToken,
+    });
 
     return {
       status: 'SUCCESS',
@@ -66,6 +84,52 @@ export class AuthService {
           lastName: user.lastName,
           role: user.role,
         },
+      },
+    };
+  }
+
+  async refreshToken(
+    payload: RefreshTokenRequestDTO
+  ): Promise<RefreshTokenResponse> {
+    const refreshToken = await this.authRepository.getDataByRefreshToken(
+      payload.refreshToken
+    );
+    if (!refreshToken) {
+      throw new InvalidToken();
+    }
+
+    const user = await this.authRepository.findById(refreshToken.userId);
+
+    if (!user) {
+      throw new InvalidToken();
+    }
+
+    // revoke or delete previous stored refresh token
+    await this.authRepository.revokeRefreshToken(payload.refreshToken);
+    // now generate new auth token
+    const token = generateAuthToken({
+      id: user.id,
+      email: user.email,
+      name: `${user.firstName} ${user.lastName}`,
+      role: user.role,
+    });
+
+    const refToken = generateRefreshToken();
+
+    // save in db
+    await this.authRepository.saveRefreshToken({
+      device: 'WEB',
+      userId: user.id,
+      expiresAt: moment().add(1, 'd').toDate(),
+      token: refToken,
+    });
+
+    return {
+      status: 'SUCCESS',
+      message: 'token generated successfully',
+      data: {
+        token: token,
+        refreshToken: refToken,
       },
     };
   }

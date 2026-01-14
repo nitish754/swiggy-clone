@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import { BaseError } from '../errors/BaseError';
 import { ZodError } from 'zod';
 import ErrorCode from '../errors/ErrorCode';
-
+import jwt from 'jsonwebtoken';
 export const handleError = (
   err: Error,
   _req: Request,
@@ -30,6 +30,17 @@ export const handleError = (
     });
     return;
   }
+  if (err instanceof jwt.JsonWebTokenError) {
+    res.status(401).json({
+      message: 'Authorizaiton Error !',
+      error: {
+        code: ErrorCode.UNAUTHORIZED,
+        message: err.message,
+      },
+    });
+    return;
+  }
+  console.log(err);
   res.status(500).json({
     message: 'Internal Server Error',
     error: {

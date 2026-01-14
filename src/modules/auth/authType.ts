@@ -2,6 +2,8 @@ import { z } from 'zod';
 import { SignupSchema } from './dtos/request/signupSchema';
 import { ApiResponse } from '@/shared/type/response';
 import { LoginSchema } from './dtos/request/loginSchema';
+import { RefreshTokenSchema } from './dtos/request/RefreshTokenSchema';
+import { DEVICE } from '@/generated/enums';
 
 export type SignupRequestDTO = z.infer<typeof SignupSchema>;
 
@@ -34,4 +36,24 @@ export type AuthTokenPayload = {
   email: string;
   name: string;
   role: string;
+  iat: number;
+  exp: number;
+};
+
+export type CreateAuthTokenPayload = {
+  id: number;
+  email: string;
+  name: string;
+  role: string;
+};
+
+export type RefreshTokenRequestDTO = z.infer<typeof RefreshTokenSchema>;
+
+export type RefreshTokenResponse = ApiResponse<Omit<LoginDto, 'user'>>;
+
+export type CreateRefreshTokenType = {
+  userId: number;
+  token: string;
+  expiresAt: Date;
+  device: DEVICE;
 };

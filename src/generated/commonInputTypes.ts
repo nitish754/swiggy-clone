@@ -218,6 +218,38 @@ export type EnumTYPEWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumTYPEFilter<$PrismaModel>;
 };
 
+export type EnumDEVICEFilter<$PrismaModel = never> = {
+  equals?: $Enums.DEVICE | Prisma.EnumDEVICEFieldRefInput<$PrismaModel>;
+  in?: $Enums.DEVICE[] | Prisma.ListEnumDEVICEFieldRefInput<$PrismaModel>;
+  notIn?: $Enums.DEVICE[] | Prisma.ListEnumDEVICEFieldRefInput<$PrismaModel>;
+  not?: Prisma.NestedEnumDEVICEFilter<$PrismaModel> | $Enums.DEVICE;
+};
+
+export type BoolFilter<$PrismaModel = never> = {
+  equals?: boolean | Prisma.BooleanFieldRefInput<$PrismaModel>;
+  not?: Prisma.NestedBoolFilter<$PrismaModel> | boolean;
+};
+
+export type EnumDEVICEWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DEVICE | Prisma.EnumDEVICEFieldRefInput<$PrismaModel>;
+  in?: $Enums.DEVICE[] | Prisma.ListEnumDEVICEFieldRefInput<$PrismaModel>;
+  notIn?: $Enums.DEVICE[] | Prisma.ListEnumDEVICEFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumDEVICEWithAggregatesFilter<$PrismaModel>
+    | $Enums.DEVICE;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumDEVICEFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumDEVICEFilter<$PrismaModel>;
+};
+
+export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: boolean | Prisma.BooleanFieldRefInput<$PrismaModel>;
+  not?: Prisma.NestedBoolWithAggregatesFilter<$PrismaModel> | boolean;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedBoolFilter<$PrismaModel>;
+  _max?: Prisma.NestedBoolFilter<$PrismaModel>;
+};
+
 export type NestedIntFilter<$PrismaModel = never> = {
   equals?: number | Prisma.IntFieldRefInput<$PrismaModel>;
   in?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel>;
@@ -424,4 +456,36 @@ export type NestedEnumTYPEWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>;
   _min?: Prisma.NestedEnumTYPEFilter<$PrismaModel>;
   _max?: Prisma.NestedEnumTYPEFilter<$PrismaModel>;
+};
+
+export type NestedEnumDEVICEFilter<$PrismaModel = never> = {
+  equals?: $Enums.DEVICE | Prisma.EnumDEVICEFieldRefInput<$PrismaModel>;
+  in?: $Enums.DEVICE[] | Prisma.ListEnumDEVICEFieldRefInput<$PrismaModel>;
+  notIn?: $Enums.DEVICE[] | Prisma.ListEnumDEVICEFieldRefInput<$PrismaModel>;
+  not?: Prisma.NestedEnumDEVICEFilter<$PrismaModel> | $Enums.DEVICE;
+};
+
+export type NestedBoolFilter<$PrismaModel = never> = {
+  equals?: boolean | Prisma.BooleanFieldRefInput<$PrismaModel>;
+  not?: Prisma.NestedBoolFilter<$PrismaModel> | boolean;
+};
+
+export type NestedEnumDEVICEWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DEVICE | Prisma.EnumDEVICEFieldRefInput<$PrismaModel>;
+  in?: $Enums.DEVICE[] | Prisma.ListEnumDEVICEFieldRefInput<$PrismaModel>;
+  notIn?: $Enums.DEVICE[] | Prisma.ListEnumDEVICEFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumDEVICEWithAggregatesFilter<$PrismaModel>
+    | $Enums.DEVICE;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumDEVICEFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumDEVICEFilter<$PrismaModel>;
+};
+
+export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: boolean | Prisma.BooleanFieldRefInput<$PrismaModel>;
+  not?: Prisma.NestedBoolWithAggregatesFilter<$PrismaModel> | boolean;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedBoolFilter<$PrismaModel>;
+  _max?: Prisma.NestedBoolFilter<$PrismaModel>;
 };

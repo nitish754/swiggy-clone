@@ -24,6 +24,8 @@ model User {
   restaurant  Restaurant?
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
+
+  @@index([email])
 }
 
 model Restaurant {
@@ -53,6 +55,19 @@ model RestaurantPhone {
   restaurant    Restaurant @relation(fields: [restaturantId], references: [id])
 }
 
+model RefreshToken {
+  id        Int      @id @default(autoincrement())
+  token     String   @unique
+  userId    Int
+  device    DEVICE   @default(WEB)
+  expiresAt DateTime
+  isRevoked Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId, device])
+}
+
 enum ROLE {
   ADMIN
   USER
@@ -69,4 +84,10 @@ enum TYPE {
   VEG
   NON_VEG
   BOTH
+}
+
+enum DEVICE {
+  WEB
+  ANDROID
+  IOS
 }

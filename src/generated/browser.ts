@@ -31,3 +31,8 @@ export type Restaurant = Prisma.RestaurantModel;
  *
  */
 export type RestaurantPhone = Prisma.RestaurantPhoneModel;
+/**
+ * Model RefreshToken
+ *
+ */
+export type RefreshToken = Prisma.RefreshTokenModel;

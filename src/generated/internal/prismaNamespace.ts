@@ -415,6 +415,7 @@ export const ModelName = {
   User: 'User',
   Restaurant: 'Restaurant',
   RestaurantPhone: 'RestaurantPhone',
+  RefreshToken: 'RefreshToken',
 } as const;
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName];
@@ -436,7 +437,7 @@ export type TypeMap<
     omit: GlobalOmitOptions;
   };
   meta: {
-    modelProps: 'user' | 'restaurant' | 'restaurantPhone';
+    modelProps: 'user' | 'restaurant' | 'restaurantPhone' | 'refreshToken';
     txIsolationLevel: TransactionIsolationLevel;
   };
   model: {
@@ -668,6 +669,82 @@ export type TypeMap<
         };
       };
     };
+    RefreshToken: {
+      payload: Prisma.$RefreshTokenPayload<ExtArgs>;
+      fields: Prisma.RefreshTokenFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.RefreshTokenFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RefreshTokenPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.RefreshTokenFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RefreshTokenPayload>;
+        };
+        findFirst: {
+          args: Prisma.RefreshTokenFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RefreshTokenPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.RefreshTokenFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RefreshTokenPayload>;
+        };
+        findMany: {
+          args: Prisma.RefreshTokenFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RefreshTokenPayload>[];
+        };
+        create: {
+          args: Prisma.RefreshTokenCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RefreshTokenPayload>;
+        };
+        createMany: {
+          args: Prisma.RefreshTokenCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.RefreshTokenCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RefreshTokenPayload>[];
+        };
+        delete: {
+          args: Prisma.RefreshTokenDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RefreshTokenPayload>;
+        };
+        update: {
+          args: Prisma.RefreshTokenUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RefreshTokenPayload>;
+        };
+        deleteMany: {
+          args: Prisma.RefreshTokenDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.RefreshTokenUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.RefreshTokenUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RefreshTokenPayload>[];
+        };
+        upsert: {
+          args: Prisma.RefreshTokenUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RefreshTokenPayload>;
+        };
+        aggregate: {
+          args: Prisma.RefreshTokenAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateRefreshToken>;
+        };
+        groupBy: {
+          args: Prisma.RefreshTokenGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.RefreshTokenGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.RefreshTokenCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.RefreshTokenCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
   };
 } & {
   other: {
@@ -750,6 +827,20 @@ export const RestaurantPhoneScalarFieldEnum = {
 
 export type RestaurantPhoneScalarFieldEnum =
   (typeof RestaurantPhoneScalarFieldEnum)[keyof typeof RestaurantPhoneScalarFieldEnum];
+
+export const RefreshTokenScalarFieldEnum = {
+  id: 'id',
+  token: 'token',
+  userId: 'userId',
+  device: 'device',
+  expiresAt: 'expiresAt',
+  isRevoked: 'isRevoked',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+} as const;
+
+export type RefreshTokenScalarFieldEnum =
+  (typeof RefreshTokenScalarFieldEnum)[keyof typeof RefreshTokenScalarFieldEnum];
 
 export const SortOrder = {
   asc: 'asc',
@@ -889,6 +980,30 @@ export type ListEnumTYPEFieldRefInput<$PrismaModel> = FieldRefInputType<
 >;
 
 /**
+ * Reference to a field of type 'DEVICE'
+ */
+export type EnumDEVICEFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  'DEVICE'
+>;
+
+/**
+ * Reference to a field of type 'DEVICE[]'
+ */
+export type ListEnumDEVICEFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  'DEVICE[]'
+>;
+
+/**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  'Boolean'
+>;
+
+/**
  * Batch Payload for updateMany & deleteMany & createMany
  */
 export type BatchPayload = {
@@ -994,6 +1109,7 @@ export type GlobalOmitConfig = {
   user?: Prisma.UserOmit;
   restaurant?: Prisma.RestaurantOmit;
   restaurantPhone?: Prisma.RestaurantPhoneOmit;
+  refreshToken?: Prisma.RefreshTokenOmit;
 };
 
 /* Types for Logging */
