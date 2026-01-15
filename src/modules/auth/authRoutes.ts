@@ -15,7 +15,7 @@ authRouter.post(
   validateRequest(RefreshTokenSchema),
   RefreshTokenHandler
 );
-authRouter.get('/test', checkAuth, (_req, res) => {
-  res.json('testing');
+authRouter.get('/test', checkAuth, (req, res) => {
+  res.json(req.user);
 });
 export default authRouter;

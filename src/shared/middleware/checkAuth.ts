@@ -18,5 +18,7 @@ export const checkAuth = (
   const decode = verifyAuthToken(token);
   req.user = decode;
 
+  req.user = decode;
+
   next();
 };

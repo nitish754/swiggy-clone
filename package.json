@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
-    "dev": "nodemon --watch src --exec ts-node -r tsconfig-paths/register src/index.ts --verbose --legacy-watch",
+    "dev": "tsc && nodemon --watch src --exec ts-node -r tsconfig-paths/register src/index.ts --verbose --legacy-watch",
     "build": "tsc",
     "start": "node dist/index.js",
     "test": "jest",
