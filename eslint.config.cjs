@@ -6,7 +6,13 @@ const globals = require('globals');
 module.exports = [
   // ⛔ Important: separate ignore block
   {
-    ignores: ['node_modules/**', 'dist/**', 'prisma.config.ts', 'generated/**'],
+    ignores: [
+      'node_modules/**',
+      'dist/**',
+      'prisma.config.ts',
+      'generated/**',
+      'jest.config.ts',
+    ],
   },
 
   {
@@ -41,6 +47,13 @@ module.exports = [
       ],
       '@typescript-eslint/explicit-module-boundary-types': 'error',
       'prettier/prettier': 'error',
+    },
+  },
+  {
+    files: ['tests/**/*.ts'],
+    rules: {
+      '@typescript-eslint/no-unsafe-call': 'off',
+      '@typescript-eslint/no-unsafe-member-access': 'off',
     },
   },
 ];
