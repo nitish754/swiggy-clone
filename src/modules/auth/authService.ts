@@ -3,7 +3,7 @@ import {
   InvalidCredentialError,
   InvalidToken,
 } from './authError';
-import { AuthRepository } from './authRepository';
+import { IAuthRepository } from './authRepository';
 import {
   LoginRequestDTO,
   LoginResponse,
@@ -17,7 +17,7 @@ import { generateAuthToken, generateRefreshToken } from '@/shared/utils/jwt';
 import moment from 'moment';
 
 export class AuthService {
-  constructor(private readonly authRepository: AuthRepository) {}
+  constructor(private readonly authRepository: IAuthRepository) {}
 
   async signup(payload: SignupRequestDTO): Promise<SignupResponse> {
     const existingUser = await this.authRepository.findByEmail(payload.email);
