@@ -14,7 +14,8 @@
     "typecheck": "tsc --noEmit",
     "prepare": "husky",
     "migrate": "prisma migrate dev",
-    "prisma:generate": "prisma generate"
+    "prisma:generate": "prisma generate",
+    "test:ci": "jest --runInBand --detectOpenHandles --forceExit"
   },
   "lint-staged": {
     "*.{ts,js}": [
