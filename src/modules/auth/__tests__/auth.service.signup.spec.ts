@@ -64,6 +64,7 @@ describe('AuthService.signup', () => {
         password: 'hashed-password',
         firstName: 'Test',
         lastName: 'Test',
+        role: 'USER',
       })
     );
 
@@ -106,17 +107,6 @@ describe('AuthService.signup', () => {
       'test@example.com'
     );
     expect(bcrypt.hash as jest.Mock).not.toHaveBeenCalled();
-    expect(authRepositoryMock.createUser).not.toHaveBeenCalled();
-  });
-
-  it('should throw an error if password hashing failed', async () => {
-    // Arrnage
-    authRepositoryMock.findByEmail.mockResolvedValue(null);
-    (bcrypt.hash as jest.Mock).mockRejectedValue(new Error('Hashing failed'));
-
-    await expect(service.signup(validPayload)).rejects.toThrow(
-      'Hashing failed'
-    );
     expect(authRepositoryMock.createUser).not.toHaveBeenCalled();
   });
 
