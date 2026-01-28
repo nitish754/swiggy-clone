@@ -1,6 +1,7 @@
 import app from '@/app';
 import {
   LoginResponse,
+  RefreshTokenResponse,
   SignupRequestDTO,
   SignupResponse,
 } from '../../authType';
@@ -154,6 +155,47 @@ describe('Auth Integration test', () => {
       expect((response.body as ErrorResponse).errors.code).toBe(
         ErrorCode.AUTH_INVALID_CREDENTIALS
       );
+    });
+  });
+
+  describe('Auth Refresh Token API integration testsuit', () => {
+    it('should generate new access token by passing refreshtoken', async () => {
+      const user = await request(app).post('/api/auth/signup').send(payload);
+      expect(user.status).toBe(201);
+      const loginResponse = await request(app).post('/api/auth/login').send({
+        email: payload.email,
+        password: payload.password,
+        device: 'WEB',
+      });
+      expect(loginResponse.status).toBe(200);
+      expect((loginResponse.body as LoginResponse).data.token).toBeDefined();
+      expect(
+        (loginResponse.body as LoginResponse).data.refreshToken
+      ).toBeDefined();
+
+      // exchange the refresh token to get new token
+      const newTokenRes = await request(app)
+        .post('/api/auth/refresh-token')
+        .send({
+          refreshToken: (loginResponse.body as LoginResponse).data.refreshToken,
+        });
+
+      expect(newTokenRes.status).toBe(200);
+      expect((newTokenRes.body as RefreshTokenResponse).status).toBe('SUCCESS');
+      expect(
+        (newTokenRes.body as RefreshTokenResponse).data.refreshToken
+      ).toBeDefined();
+      expect(
+        (newTokenRes.body as RefreshTokenResponse).data.token
+      ).toBeDefined();
+
+      // make sure if old refresh token must be revoked
+      const refreshToken = await prisma.refreshToken.findFirst({
+        where: {
+          token: (loginResponse.body as LoginResponse).data.refreshToken,
+        },
+      });
+      expect(refreshToken?.isRevoked).toBe(true);
     });
   });
 });
