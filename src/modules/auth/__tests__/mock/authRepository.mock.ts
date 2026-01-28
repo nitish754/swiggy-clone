@@ -1,4 +1,4 @@
-import { IAuthRepository } from '../authRepository';
+import { IAuthRepository } from '../../authRepository';
 
 export type AuthRepositoryMock = {
   findByEmail: jest.MockedFunction<IAuthRepository['findByEmail']>;

@@ -12,6 +12,8 @@ module.exports = [
       'prisma.config.ts',
       'generated/**',
       'jest.config.ts',
+      'jest.unit.config.ts',
+      'jest.int.config.ts',
     ],
   },
 

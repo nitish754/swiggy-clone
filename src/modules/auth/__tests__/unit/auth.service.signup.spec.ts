@@ -1,11 +1,11 @@
-import { AuthService } from '../authService';
+import { AuthService } from '../../authService';
 import * as bcrypt from 'bcrypt';
 import {
   AuthRepositoryMock,
   createAuthRepositoryMock,
-} from './authRepository.mock';
-import { DuplicateEmail } from '../authError';
-import { SignupRequestDTO } from '../authType';
+} from '../mock/authRepository.mock';
+import { DuplicateEmail } from '../../authError';
+import { SignupRequestDTO } from '../../authType';
 
 jest.mock('bcrypt');
 

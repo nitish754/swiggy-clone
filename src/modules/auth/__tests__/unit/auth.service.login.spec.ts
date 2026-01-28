@@ -1,12 +1,12 @@
 import * as bcrypt from 'bcrypt';
-import { AuthService } from '../authService';
+import { AuthService } from '../../authService';
 import {
   AuthRepositoryMock,
   createAuthRepositoryMock,
-} from './authRepository.mock';
+} from '../mock/authRepository.mock';
 import * as jwt from '@/shared/utils/jwt';
-import { LoginRequestDTO } from '../authType';
-import { InvalidCredentialError } from '../authError';
+import { LoginRequestDTO } from '../../authType';
+import { InvalidCredentialError } from '../../authError';
 
 jest.mock('bcrypt');
 jest.mock('@/shared/utils/jwt', () => ({

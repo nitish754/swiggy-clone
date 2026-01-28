@@ -8,14 +8,17 @@
     "dev": "tsc && nodemon --watch src --exec ts-node -r tsconfig-paths/register src/index.ts --verbose --legacy-watch",
     "build": "tsc",
     "start": "node dist/index.js",
-    "test": "jest",
+    "test:unit": "dotenv -e .env.test jest -c jest.config.js --detectOpenHandles --forceExit",
+    "test:int": "jest -c jest.int.config.js --detectOpenHandles --forceExit",
+    "test": "npm run test:unit && npm run test:int",
     "lint": "eslint . --ext ts",
     "lint:fix": "eslint . --ext ts --fix",
     "typecheck": "tsc --noEmit",
     "prepare": "husky",
     "migrate": "prisma migrate dev",
     "prisma:generate": "prisma generate",
-    "test:ci": "jest --runInBand --detectOpenHandles --forceExit"
+    "test:ci": "jest --runInBand --detectOpenHandles --forceExit",
+    "test:clean": "jest --clearCache && rm -rf node_modules/.cache"
   },
   "lint-staged": {
     "*.{ts,js}": [
@@ -55,6 +58,7 @@
     "@types/supertest": "^6.0.3",
     "@typescript-eslint/eslint-plugin": "^8.49.0",
     "@typescript-eslint/parser": "^8.49.0",
+    "dotenv-cli": "^11.0.0",
     "eslint": "^9.39.1",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",

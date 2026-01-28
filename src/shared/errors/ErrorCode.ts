@@ -7,6 +7,7 @@ enum ErrorCode {
   FORBIDDEN = 'FORBIDDEN',
   NOT_FOUND = 'NOT_FOUND',
   VALIDATION_ERROR = 'VALIDATION_ERROR',
+  UNKNOWN = 'UNKNOWN',
 }
 
 export default ErrorCode;

@@ -1,5 +1,5 @@
-import { RefreshToken, User } from '@/generated/client';
-import { prisma } from '@/shared/utils/prisma';
+import { PrismaClient, RefreshToken, User } from '@/generated/client';
+// import { prisma } from '@/shared/utils/prisma';
 import { CreateRefreshTokenType, SignupRequestDTO } from './authType';
 
 export interface IAuthRepository {
@@ -12,29 +12,30 @@ export interface IAuthRepository {
 }
 
 export class AuthRepository implements IAuthRepository {
-  private userModel = prisma.user;
-  private refreshTokenModel = prisma.refreshToken;
+  // private userModel = prisma.user;
+  // private refreshTokenModel = prisma.refreshToken;
+  constructor(private readonly prisma: PrismaClient) {}
 
   async findByEmail(email: string): Promise<User | null> {
-    return await this.userModel.findUnique({
+    return await this.prisma.user.findUnique({
       where: { email },
     });
   }
 
   async findById(id: number): Promise<User | null> {
-    return await this.userModel.findUnique({
+    return await this.prisma.user.findUnique({
       where: { id },
     });
   }
 
   async createUser(payload: SignupRequestDTO): Promise<User> {
-    return await this.userModel.create({
+    return await this.prisma.user.create({
       data: payload,
     });
   }
 
   async getDataByRefreshToken(token: string): Promise<RefreshToken | null> {
-    return await this.refreshTokenModel.findFirst({
+    return await this.prisma.refreshToken.findFirst({
       where: {
         token,
         isRevoked: false,
@@ -48,14 +49,15 @@ export class AuthRepository implements IAuthRepository {
   async saveRefreshToken(
     payload: CreateRefreshTokenType
   ): Promise<RefreshToken> {
-    return await this.refreshTokenModel.create({
+    return await this.prisma.refreshToken.create({
       data: payload,
     });
   }
 
   async revokeRefreshToken(token: string): Promise<RefreshToken> {
-    return await this.refreshTokenModel.delete({
+    return this.prisma.refreshToken.update({
       where: { token },
+      data: { isRevoked: true },
     });
   }
 }

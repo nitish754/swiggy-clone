@@ -1,10 +1,10 @@
-import { InvalidToken } from '../authError';
-import { AuthService } from '../authService';
-import { RefreshTokenRequestDTO } from '../authType';
+import { InvalidToken } from '../../authError';
+import { AuthService } from '../../authService';
+import { RefreshTokenRequestDTO } from '../../authType';
 import {
   AuthRepositoryMock,
   createAuthRepositoryMock,
-} from './authRepository.mock';
+} from '../mock/authRepository.mock';
 import * as jwt from '@/shared/utils/jwt';
 
 const requestPayload: RefreshTokenRequestDTO = {
